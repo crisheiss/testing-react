@@ -16,4 +16,10 @@ it('has a text area and a button', () => {
     expect(wrapped.find("button").length).toEqual(1)
 });
 
-
+it('has a text area that users can type in', () => {
+    // The object that we pass replaces the event object.
+    // Is a "controlled" event if you will
+    wrapped.find("textarea").simulate('change', {
+        target: { value: 'new comment' }
+    });
+});
