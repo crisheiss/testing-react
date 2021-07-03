@@ -4,6 +4,7 @@ class CommentBox extends Component {
     state = { comment: '' };
 
     handleChange = (event) => {
+        // Doesn't rerender at that exact moment. It queues up as a task for React
         this.setState({comment: event.target.value})
     };
 
