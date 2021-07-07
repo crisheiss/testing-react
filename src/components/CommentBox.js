@@ -5,6 +5,21 @@ import * as actions from "actions";
 class CommentBox extends Component {
     state = { comment: '' };
 
+    shouldNavigateAway() {
+        if (!this.props.auth) {
+            console.log("I need to leave")
+        }
+    }
+
+    // Component just rendered
+    componentDidMount() {
+        this.shouldNavigateAway()
+    }
+    // Component just got updated
+    componentDidUpdate() {
+        this.shouldNavigateAway()   
+    }
+
     handleChange = (event) => {
         // Doesn't rerender at that exact moment. It queues up as a task for React
         this.setState({comment: event.target.value})
@@ -32,4 +47,8 @@ class CommentBox extends Component {
     }
 }
 
-export default connect(null , actions)(CommentBox);
+const mapStateToProps = (state) => {
+    return { auth: state.auth }
+}
+
+export default connect(mapStateToProps , actions)(CommentBox);
